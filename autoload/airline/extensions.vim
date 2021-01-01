@@ -151,6 +151,12 @@ function! airline#extensions#load()
   call airline#extensions#quickfix#init(s:ext)
   call add(s:loaded_ext, 'quickfix')
 
+  " TODO: loaded_nvim_ipy isn't actually set by nvim-ipy right now
+  if get(g:, 'loaded_nvim_ipy', 1) && get(g:, 'airline#extensions#nvimipy#enabled', 1)
+    call airline#extensions#nvimipy#init(s:ext)
+    call add(s:loaded_ext, 'nvimipy')
+  endif
+
   if get(g:, 'loaded_unite', 0) && get(g:, 'airline#extensions#unite#enabled', 1)
     call airline#extensions#unite#init(s:ext)
     call add(s:loaded_ext, 'unite')
